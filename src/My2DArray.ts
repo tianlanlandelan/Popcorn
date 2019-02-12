@@ -38,7 +38,11 @@ class My2DArray{
     }
 
     /**
-     * 
+     * 随机生成一个二维数组
+     * @param rows      行数
+     * @param columns   列数
+     * @param min     数组值的最小值
+     * @param max     数组值的最大值
      */
     public initRandom2(rows:number,columns:number,min:number,max:number):void{
         this.init(rows,columns,0);
@@ -109,7 +113,7 @@ class My2DArray{
             }
             console.log(lineStr);
         }
-        console.log("====打印数组====");
+        console.log("====打印结束====");
     }
 
     public test(){

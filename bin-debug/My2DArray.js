@@ -105,6 +105,7 @@ var My2DArray = (function () {
             }
             console.log(lineStr);
         }
+        console.log("====打印结束====");
     };
     My2DArray.prototype.test = function () {
         var my2DArray = new My2DArray();

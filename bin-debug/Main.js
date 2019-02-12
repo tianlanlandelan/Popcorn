@@ -154,7 +154,8 @@ var Main = (function (_super) {
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
         var my2DArray = new My2DArray();
-        my2DArray.initRandom(9, 9, 100);
+        // my2DArray.initRandom(9,9,100);
+        my2DArray.initRandom2(9, 9, 5, 9);
         var array = my2DArray.getArray();
         var size = 100;
         for (var i = 0; i < array.length; i++) {
