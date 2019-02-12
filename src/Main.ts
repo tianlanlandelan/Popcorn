@@ -111,6 +111,13 @@ class Main extends egret.DisplayObjectContainer {
             }
         }
 
+
+        /*
+        test
+        */
+        my2DArray.print();
+
+
     }
     private printArray(x:number, y:number, value:string){
         let textfield = new egret.TextField();

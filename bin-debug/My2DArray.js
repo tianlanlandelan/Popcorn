@@ -37,6 +37,17 @@ var My2DArray = (function () {
         }
     };
     /**
+     *
+     */
+    My2DArray.prototype.initRandom2 = function (rows, columns, min, max) {
+        this.init(rows, columns, 0);
+        for (var i = 0; i < this.rows; i++) {
+            for (var j = 0; j < this.columns; j++) {
+                this.setValue(i, j, Math.floor(Math.random() * (max - min) + min));
+            }
+        }
+    };
+    /**
      * 取数组中的值
      */
     My2DArray.prototype.getValue = function (rows, columns) {
@@ -84,6 +95,17 @@ var My2DArray = (function () {
     My2DArray.prototype.getArray = function () {
         return this.my2DArray;
     };
+    My2DArray.prototype.print = function () {
+        console.log("====打印数组====");
+        var array = this.my2DArray;
+        for (var i = 0; i < array.length; i++) {
+            var lineStr = "";
+            for (var j = 0; j < array[i].length; j++) {
+                lineStr = lineStr + array[i][j] + "\t";
+            }
+            console.log(lineStr);
+        }
+    };
     My2DArray.prototype.test = function () {
         var my2DArray = new My2DArray();
         my2DArray.init(5, 6, 0);
@@ -96,4 +118,3 @@ var My2DArray = (function () {
     return My2DArray;
 }());
 __reflect(My2DArray.prototype, "My2DArray");
-//# sourceMappingURL=My2DArray.js.map

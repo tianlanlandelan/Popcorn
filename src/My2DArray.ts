@@ -38,6 +38,19 @@ class My2DArray{
     }
 
     /**
+     * 
+     */
+    public initRandom2(rows:number,columns:number,min:number,max:number):void{
+        this.init(rows,columns,0);
+        for(let i = 0 ; i < this.rows ; i ++){
+            for(let j = 0 ; j < this.columns; j ++){
+                this.setValue(i,j,Math.floor(Math.random() * (max - min) + min));
+            }
+        }
+
+    }
+
+    /**
      * 取数组中的值
      */
     public getValue(rows:number,columns:number):any{
@@ -84,6 +97,19 @@ class My2DArray{
      */
     public getArray():Array<Array<any>>{
         return this.my2DArray;
+    }
+
+    public print():void{
+        console.log("====打印数组====");
+        let array : Array<Array<any>> = this.my2DArray;
+        for(let i = 0 ; i < array.length ; i ++){
+            let lineStr : string = "";
+            for(let j = 0 ; j < array[i].length ; j ++){
+                lineStr = lineStr + array[i][j] + "\t";
+            }
+            console.log(lineStr);
+        }
+        console.log("====打印数组====");
     }
 
     public test(){

@@ -164,6 +164,10 @@ var Main = (function (_super) {
                 this.printArray(xValue, yValue, array[i][j] + "");
             }
         }
+        /*
+        test
+        */
+        my2DArray.print();
     };
     Main.prototype.printArray = function (x, y, value) {
         var textfield = new egret.TextField();
@@ -193,4 +197,3 @@ var Main = (function (_super) {
     return Main;
 }(egret.DisplayObjectContainer));
 __reflect(Main.prototype, "Main");
-//# sourceMappingURL=Main.js.map
