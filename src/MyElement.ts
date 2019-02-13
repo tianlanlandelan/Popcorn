@@ -1,6 +1,8 @@
 class MyElement extends egret.TextField {
     public row :number;
     public col :number;
+
+	public canBeClean:boolean = false;
 	/**
 	 * 文字提示
 	 */
@@ -20,12 +22,27 @@ class MyElement extends egret.TextField {
 
         console.log("==加载MyText:" , this.name,this.x,this.y,this.text);
 	}
+	public changeColor():void{
+		if(this.textColor == 0xffffff){
+			this.textColor = 0x000000;
+		}else{
+			this.textColor = 0xffffff;
+		}
+	}
+	public changeState():void{
+		this.textColor = 0x000000;
+		this.canBeClean = true;
+	}
+	
+
 	public static createNullElement(row:number,col:number):MyElement{
 		return new MyElement(row,col,0,0,null);
 	}
 
 	public static clone(element:MyElement):MyElement{
-		return new MyElement(element.row,element.col,element.x,element.y,element.text);
+		let clone : MyElement = new MyElement(element.row,element.col,element.x,element.y,element.text);
+		clone.textColor = element.textColor;
+		return clone;
 	}
 
 	public static swapText(a:MyElement,b:MyElement):Array<MyElement>{
@@ -41,6 +58,21 @@ class MyElement extends egret.TextField {
 
 		return array;
 
+	}
+	//判断两个元素是否相邻
+	public static isAdjoin(a:MyElement,b:MyElement):boolean{
+
+		if(a.row == b.row){
+			if(a.col == b.col -1 || a.col == b.col + 1){
+				return true;
+			}
+		}
+		if(a.col == b.col){
+			if(a.row == b.row -1 || a.row == b.row + 1){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public printStr():void{

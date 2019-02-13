@@ -15,6 +15,7 @@ var MyElement = (function (_super) {
      */
     function MyElement(row, col, x, y, value) {
         var _this = _super.call(this) || this;
+        _this.canBeClean = false;
         _this.x = x;
         _this.y = y;
         _this.textColor = 0xffffff;
@@ -28,11 +29,25 @@ var MyElement = (function (_super) {
         console.log("==加载MyText:", _this.name, _this.x, _this.y, _this.text);
         return _this;
     }
+    MyElement.prototype.changeColor = function () {
+        if (this.textColor == 0xffffff) {
+            this.textColor = 0x000000;
+        }
+        else {
+            this.textColor = 0xffffff;
+        }
+    };
+    MyElement.prototype.changeState = function () {
+        this.textColor = 0x000000;
+        this.canBeClean = true;
+    };
     MyElement.createNullElement = function (row, col) {
         return new MyElement(row, col, 0, 0, null);
     };
     MyElement.clone = function (element) {
-        return new MyElement(element.row, element.col, element.x, element.y, element.text);
+        var clone = new MyElement(element.row, element.col, element.x, element.y, element.text);
+        clone.textColor = element.textColor;
+        return clone;
     };
     MyElement.swapText = function (a, b) {
         var a1 = MyElement.clone(a);
@@ -43,6 +58,20 @@ var MyElement = (function (_super) {
         array[0] = a1;
         array[1] = b1;
         return array;
+    };
+    //判断两个元素是否相邻
+    MyElement.isAdjoin = function (a, b) {
+        if (a.row == b.row) {
+            if (a.col == b.col - 1 || a.col == b.col + 1) {
+                return true;
+            }
+        }
+        if (a.col == b.col) {
+            if (a.row == b.row - 1 || a.row == b.row + 1) {
+                return true;
+            }
+        }
+        return false;
     };
     MyElement.prototype.printStr = function () {
         console.log("name:", this.name, "x:", this.x, "y:", this.y, "text:", this.text, "row:", this.row, "col:", this.col);
