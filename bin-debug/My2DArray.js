@@ -37,7 +37,11 @@ var My2DArray = (function () {
         }
     };
     /**
-     *
+     * 随机生成一个二维数组
+     * @param rows      行数
+     * @param columns   列数
+     * @param min     数组值的最小值
+     * @param max     数组值的最大值
      */
     My2DArray.prototype.initRandom2 = function (rows, columns, min, max) {
         this.init(rows, columns, 0);
@@ -119,3 +123,4 @@ var My2DArray = (function () {
     return My2DArray;
 }());
 __reflect(My2DArray.prototype, "My2DArray");
+//# sourceMappingURL=My2DArray.js.map

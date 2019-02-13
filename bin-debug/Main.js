@@ -153,31 +153,12 @@ var Main = (function (_super) {
         this.addChild(sky);
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
-        var my2DArray = new My2DArray();
-        // my2DArray.initRandom(9,9,100);
-        my2DArray.initRandom2(9, 9, 5, 9);
-        var array = my2DArray.getArray();
-        var size = 100;
-        for (var i = 0; i < array.length; i++) {
-            var xValue = size * (i + 1);
-            for (var j = 0; j < array[i].length; j++) {
-                var yValue = size * (j + 1);
-                this.printArray(xValue, yValue, array[i][j] + "");
-            }
-        }
         /*
-        test
+        加载游戏大厅
         */
-        my2DArray.print();
-    };
-    Main.prototype.printArray = function (x, y, value) {
-        var textfield = new egret.TextField();
-        this.addChild(textfield);
-        textfield.size = 72;
-        textfield.textColor = 0xffffff;
-        textfield.x = x;
-        textfield.y = y;
-        textfield.text = value;
+        var game = new Game();
+        game.name = "game";
+        this.addChild(game);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -198,3 +179,4 @@ var Main = (function (_super) {
     return Main;
 }(egret.DisplayObjectContainer));
 __reflect(Main.prototype, "Main");
+//# sourceMappingURL=Main.js.map

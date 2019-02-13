@@ -95,39 +95,15 @@ class Main extends egret.DisplayObjectContainer {
         let stageW = this.stage.stageWidth;
         let stageH = this.stage.stageHeight;
         
-
-        
-        
-
-        let my2DArray:My2DArray = new My2DArray();
-        my2DArray.initRandom(9,9,100);
-        let array : Array<Array<number>> = my2DArray.getArray();
-        let size :number = 100;
-        for(let i = 0 ; i < array.length ; i ++){
-            let xValue :number = size * ( i + 1);
-            for(let j = 0 ; j < array[i].length ; j ++){
-                let yValue :number = size * (j + 1); 
-                this.printArray(xValue,yValue,array[i][j] + "");
-            }
-        }
-
-
         /*
-        test
+        加载游戏大厅
         */
-        my2DArray.print();
-
+        let game : Game = new Game();
+        game.name = "game";
+        this.addChild(game);
 
     }
-    private printArray(x:number, y:number, value:string){
-        let textfield = new egret.TextField();
-        this.addChild(textfield);
-        textfield.size = 72;
-        textfield.textColor = 0xffffff;
-        textfield.x = x;
-        textfield.y = y;
-        textfield.text = value;
-    }
+
 
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
