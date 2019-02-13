@@ -70,6 +70,11 @@ var My2dArray = (function () {
         this.my2DArray[rows][columns] = value;
     };
     /**
+     * 移除一个元素，
+     */
+    My2dArray.prototype.removeElement = function (row, col) {
+    };
+    /**
      * 初始化行数
      */
     My2dArray.prototype.initRows = function (rows) {

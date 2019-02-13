@@ -12,27 +12,62 @@ var FirstLevel = (function (_super) {
     __extends(FirstLevel, _super);
     function FirstLevel() {
         var _this = _super.call(this) || this;
+        //元素最大值
+        _this.elementMaxValue = 5;
+        //元素行数
+        _this.elementRows = 4;
+        //元素列数
+        _this.elementCols = 4;
+        //元素大小
+        _this.elementSize = 100;
         console.log("==加载第一关==");
         _this.show();
         return _this;
     }
     FirstLevel.prototype.show = function () {
         this.elementArray = this.initElements();
+        this.loadElementArray();
+    };
+    FirstLevel.prototype.loadElementArray = function () {
         for (var i = 0; i < this.elementArray.rows; i++) {
             for (var j = 0; j < this.elementArray.columns; j++) {
-                this.addChild(this.elementArray.getValue(i, j));
+                var element = this.elementArray.getValue(i, j);
+                if (element != null) {
+                    var el = this.getChildByName(element.name);
+                    if (el != null) {
+                        this.removeChild(el);
+                    }
+                    this.addChild(element);
+                }
             }
         }
     };
+    FirstLevel.prototype.removeElementArray = function () {
+        for (var i = 0; i < this.elementArray.rows; i++) {
+            for (var j = 0; j < this.elementArray.columns; j++) {
+                var element = this.elementArray.getValue(i, j);
+                if (element != null) {
+                    var el = this.getChildByName(element.name);
+                    if (el != null) {
+                        this.removeChild(el);
+                    }
+                }
+            }
+        }
+    };
+    /**
+     * 初始化元素
+     * 把可移动的元素、障碍物、空白区都看作数组中的一个元素
+     * TODO 添加障碍物和空白区
+     */
     FirstLevel.prototype.initElements = function () {
         var my2DArray = new My2dArray();
-        my2DArray.initWithRandomNumber(4, 4, 5);
+        my2DArray.initWithRandomNumber(this.elementRows, this.elementCols, this.elementMaxValue);
         var array = my2DArray.getArray();
-        var size = 100;
         for (var i = 0; i < my2DArray.rows; i++) {
-            var x = size * (i + 1);
+            var x = this.elementSize * (i + 1);
             for (var j = 0; j < my2DArray.columns; j++) {
-                var y = size * (j + 1);
+                var y = this.elementSize * (j + 1);
                 var element = new MyElement(i, j, x, y, array[i][j] + "");
                 element.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickElement, this);
                 my2DArray.setValue(i, j, element);
@@ -42,7 +77,10 @@ var FirstLevel = (function (_super) {
     };
     FirstLevel.prototype.clickElement = function (evt) {
         var element = evt.currentTarget;
-        console.log(element.name, element.text);
+        console.log(element.name, element.text, element.row, element.col);
+        this.removeElementArray();
+        this.elementArray.setValue(element.row, element.col, null);
+        this.loadElementArray();
     };
     return FirstLevel;
 }(egret.DisplayObjectContainer));
