@@ -3,10 +3,10 @@
  * @date 2018-12-05 15:45:08
  * 定义二维数组，提供相关操作
  */
-class My2DArray{
+class My2dArray{
     private my2DArray : Array<Array<any>> =  new Array<Array<any>>();
-    private rows :number;
-    private columns :number;
+    public rows :number;
+    public columns :number;
 
     /**
      * 初始化数组
@@ -27,7 +27,7 @@ class My2DArray{
      * @param columns   列数
      * @param value     数组值的范围
      */
-    public initRandom(rows:number,columns:number,value:number):void{
+    public initWithRandomNumber(rows:number,columns:number,value:number):void{
         this.init(rows,columns,0);
         for(let i = 0 ; i < this.rows ; i ++){
             for(let j = 0 ; j < this.columns; j ++){
@@ -44,7 +44,7 @@ class My2DArray{
      * @param min     数组值的最小值
      * @param max     数组值的最大值
      */
-    public initRandom2(rows:number,columns:number,min:number,max:number):void{
+    public initWithRandom2Number(rows:number,columns:number,min:number,max:number):void{
         this.init(rows,columns,0);
         for(let i = 0 ; i < this.rows ; i ++){
             for(let j = 0 ; j < this.columns; j ++){
@@ -117,7 +117,7 @@ class My2DArray{
     }
 
     public test(){
-        let my2DArray:My2DArray = new My2DArray();
+        let my2DArray:My2dArray = new My2dArray();
         my2DArray.init(5,6,0);
         console.log("数组:",my2DArray.getArray());
         console.log("取值:",my2DArray.getValue(1,1));

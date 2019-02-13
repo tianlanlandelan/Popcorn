@@ -11,8 +11,8 @@
 		"bin-debug/Game.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
-		"bin-debug/My2DArray.js",
-		"bin-debug/MyText.js",
+		"bin-debug/My2dArray.js",
+		"bin-debug/MyElement.js",
 		"bin-debug/Platform.js",
 		"bin-debug/levels/FirstLevel.js"
 	]

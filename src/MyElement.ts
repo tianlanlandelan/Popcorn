@@ -1,4 +1,4 @@
-class MyText extends egret.TextField {
+class MyElement extends egret.TextField {
     public row :number;
     public col :number;
 	/**
@@ -15,6 +15,8 @@ class MyText extends egret.TextField {
         this.name = row + "-" + col;
         this.row = row;
         this.col = col;
+
+        this.touchEnabled = true;
 
         console.log("==加载MyText:" + this.name);
 	}

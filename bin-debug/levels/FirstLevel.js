@@ -17,22 +17,32 @@ var FirstLevel = (function (_super) {
         return _this;
     }
     FirstLevel.prototype.show = function () {
-        var my2DArray = new My2DArray();
-        my2DArray.initRandom(4, 4, 5);
-        var array = my2DArray.getArray();
-        var size = 100;
-        for (var i = 0; i < array.length; i++) {
-            var x = size * (i + 1);
-            for (var j = 0; j < array[i].length; j++) {
-                var y = size * (j + 1);
-                var textfield = new MyText(i, j, x, y, array[i][j] + "");
-                this.addChild(textfield);
+        this.elementArray = this.initElements();
+        for (var i = 0; i < this.elementArray.rows; i++) {
+            for (var j = 0; j < this.elementArray.columns; j++) {
+                this.addChild(this.elementArray.getValue(i, j));
             }
         }
-        /*
-        test
-        */
-        my2DArray.print();
+    };
+    FirstLevel.prototype.initElements = function () {
+        var my2DArray = new My2dArray();
+        my2DArray.initWithRandomNumber(4, 4, 5);
+        var array = my2DArray.getArray();
+        var size = 100;
+        for (var i = 0; i < my2DArray.rows; i++) {
+            var x = size * (i + 1);
+            for (var j = 0; j < my2DArray.columns; j++) {
+                var y = size * (j + 1);
+                var element = new MyElement(i, j, x, y, array[i][j] + "");
+                element.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickElement, this);
+                my2DArray.setValue(i, j, element);
+            }
+        }
+        return my2DArray;
+    };
+    FirstLevel.prototype.clickElement = function (evt) {
+        var element = evt.currentTarget;
+        console.log(element.name, element.text);
     };
     return FirstLevel;
 }(egret.DisplayObjectContainer));
