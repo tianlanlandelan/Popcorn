@@ -4,7 +4,7 @@ class MyElement extends egret.TextField {
 
 	public canBeClean:boolean = false;
 	/**
-	 * 文字提示
+	 * 基础元素
 	 */
 	public constructor(row:number,col:number,x:number, y:number, value:string) {
 		super();
@@ -30,7 +30,7 @@ class MyElement extends egret.TextField {
 		}
 	}
 	public changeState():void{
-		this.textColor = 0x000000;
+		// this.textColor = 0x00ff00;
 		this.canBeClean = true;
 	}
 	

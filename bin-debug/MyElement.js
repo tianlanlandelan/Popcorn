@@ -38,7 +38,7 @@ var MyElement = (function (_super) {
         }
     };
     MyElement.prototype.changeState = function () {
-        this.textColor = 0x000000;
+        // this.textColor = 0x00ff00;
         this.canBeClean = true;
     };
     MyElement.createNullElement = function (row, col) {

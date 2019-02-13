@@ -126,6 +126,13 @@ class FirstLevel extends egret.DisplayObjectContainer{
             }
         }
 
+        for(let i = this.elementArray.rows - 1 ; i >= 0 ; i --){
+            for(let j = this.elementArray.columns - 1;j >= 0 ; j --){
+                if(this.elementArray.getValue(i,j).canBeClean){
+                    this.removeElementAndMoveDown(i,j);
+                }
+            }
+        }
 
         // this.removeElementAndMoveDown(element.row,element.col);
     }
