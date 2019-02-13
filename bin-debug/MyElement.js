@@ -25,9 +25,28 @@ var MyElement = (function (_super) {
         _this.row = row;
         _this.col = col;
         _this.touchEnabled = true;
-        console.log("==加载MyText:" + _this.name);
+        console.log("==加载MyText:", _this.name, _this.x, _this.y, _this.text);
         return _this;
     }
+    MyElement.createNullElement = function (row, col) {
+        return new MyElement(row, col, 0, 0, null);
+    };
+    MyElement.clone = function (element) {
+        return new MyElement(element.row, element.col, element.x, element.y, element.text);
+    };
+    MyElement.swapText = function (a, b) {
+        var a1 = MyElement.clone(a);
+        var b1 = MyElement.clone(b);
+        a1.text = b.text;
+        b1.text = a.text;
+        var array = new Array(2);
+        array[0] = a1;
+        array[1] = b1;
+        return array;
+    };
+    MyElement.prototype.printStr = function () {
+        console.log("name:", this.name, "x:", this.x, "y:", this.y, "text:", this.text, "row:", this.row, "col:", this.col);
+    };
     return MyElement;
 }(egret.TextField));
 __reflect(MyElement.prototype, "MyElement");

@@ -70,10 +70,16 @@ var My2dArray = (function () {
         this.my2DArray[rows][columns] = value;
     };
     /**
-     * 移除一个元素，
+     * 移除一个元素，同时该元素上一行同列的数据下移
      */
-    My2dArray.prototype.removeElement = function (row, col) {
-    };
+    // public removeElementAndMoveDown(row:number,col:number):void{
+    //     this.setValue(row,col,null);
+    //     for(let i = row; i < this.rows - 1; i ++){
+    //         let a = this.getValue(i + 1 , col);
+    //         this.setValue(i + 1,col,this.getValue(i,col));
+    //         this.setValue(i,col,a);
+    //     }
+    // }
     /**
      * 初始化行数
      */
@@ -115,15 +121,6 @@ var My2dArray = (function () {
             console.log(lineStr);
         }
         console.log("====打印结束====");
-    };
-    My2dArray.prototype.test = function () {
-        var my2DArray = new My2dArray();
-        my2DArray.init(5, 6, 0);
-        console.log("数组:", my2DArray.getArray());
-        console.log("取值:", my2DArray.getValue(1, 1));
-        my2DArray.setValue(1, 1, 5);
-        console.log("赋值后取值:", my2DArray.getValue(1, 1));
-        console.log("取数组范围外的值:", my2DArray.getValue(10, 1));
     };
     return My2dArray;
 }());

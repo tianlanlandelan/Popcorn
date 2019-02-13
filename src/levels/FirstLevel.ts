@@ -26,11 +26,8 @@ class FirstLevel extends egret.DisplayObjectContainer{
         for(let i = 0 ; i < this.elementArray.rows; i ++){
             for(let j = 0 ; j < this.elementArray.columns; j ++){
                 let element = this.elementArray.getValue(i,j);
-                if(element != null){
-                    let el  = this.getChildByName(element.name);
-                    if(el != null){
-                        this.removeChild(el);
-                    }
+                if(element != null && element.text != null){
+                    element.addEventListener(egret.TouchEvent.TOUCH_TAP,this.clickElement,this);
                     this.addChild(element);
                 }
             }
@@ -61,11 +58,10 @@ class FirstLevel extends egret.DisplayObjectContainer{
         my2DArray.initWithRandomNumber(this.elementRows,this.elementCols,this.elementMaxValue);
         let array : Array<Array<any>> = my2DArray.getArray();
         for(let i = 0 ; i < my2DArray.rows ; i ++){
-            let x :number = this.elementSize * ( i + 1);
+            let y :number = this.elementSize * (my2DArray.rows - i);
             for(let j = 0 ; j < my2DArray.columns; j ++){
-                let y :number = this.elementSize * (j + 1); 
+                let x :number = this.elementSize * (j + 1); 
                 let element:MyElement = new MyElement(i,j,x,y,array[i][j] + "");
-                element.addEventListener(egret.TouchEvent.TOUCH_TAP,this.clickElement,this);
                 my2DArray.setValue(i,j,element);
             }
         }
@@ -73,13 +69,28 @@ class FirstLevel extends egret.DisplayObjectContainer{
     }
 
     public clickElement(evt: egret.TouchEvent):void{
-        let element:MyElement = evt.currentTarget;
-        console.log(element.name,element.text,element.row,element.col);
         this.removeElementArray();
 
-        this.elementArray.setValue(element.row,element.col,null);
+        let element:MyElement = evt.currentTarget;
+        console.log(element.name,element.text,element.row,element.col);
+
+        this.removeElementAndMoveDown(element.row,element.col);
+
         this.loadElementArray();
 
+    }
+
+    /**
+     * 移除一个元素，同时该元素上一行同列的数据下移
+     */
+    public removeElementAndMoveDown(row:number,col:number):void{
+
+        for(let i = row; i < this.elementArray.rows - 1; i ++){
+            let array: Array<MyElement> = MyElement.swapText(this.elementArray.getValue(i + 1 , col),this.elementArray.getValue(i , col));
+            this.elementArray.setValue(i + 1,col,array[0]);
+            this.elementArray.setValue(i,col,array[1]);
+        }
+        this.elementArray.setValue(this.elementArray.rows - 1,col,MyElement.createNullElement(this.elementArray.rows - 1,col));
     }
 
 

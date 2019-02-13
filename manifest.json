@@ -8,10 +8,11 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
+		"bin-debug/My2dArray.js",
 		"bin-debug/Game.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
-		"bin-debug/My2dArray.js",
+		"bin-debug/My2dElementArray.js",
 		"bin-debug/MyElement.js",
 		"bin-debug/Platform.js",
 		"bin-debug/levels/FirstLevel.js"

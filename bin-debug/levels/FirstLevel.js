@@ -32,11 +32,8 @@ var FirstLevel = (function (_super) {
         for (var i = 0; i < this.elementArray.rows; i++) {
             for (var j = 0; j < this.elementArray.columns; j++) {
                 var element = this.elementArray.getValue(i, j);
-                if (element != null) {
-                    var el = this.getChildByName(element.name);
-                    if (el != null) {
-                        this.removeChild(el);
-                    }
+                if (element != null && element.text != null) {
+                    element.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickElement, this);
                     this.addChild(element);
                 }
             }
@@ -65,22 +62,32 @@ var FirstLevel = (function (_super) {
         my2DArray.initWithRandomNumber(this.elementRows, this.elementCols, this.elementMaxValue);
         var array = my2DArray.getArray();
         for (var i = 0; i < my2DArray.rows; i++) {
-            var x = this.elementSize * (i + 1);
+            var y = this.elementSize * (my2DArray.rows - i);
             for (var j = 0; j < my2DArray.columns; j++) {
-                var y = this.elementSize * (j + 1);
+                var x = this.elementSize * (j + 1);
                 var element = new MyElement(i, j, x, y, array[i][j] + "");
-                element.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickElement, this);
                 my2DArray.setValue(i, j, element);
             }
         }
         return my2DArray;
     };
     FirstLevel.prototype.clickElement = function (evt) {
+        this.removeElementArray();
         var element = evt.currentTarget;
         console.log(element.name, element.text, element.row, element.col);
-        this.removeElementArray();
-        this.elementArray.setValue(element.row, element.col, null);
+        this.removeElementAndMoveDown(element.row, element.col);
         this.loadElementArray();
+    };
+    /**
+     * 移除一个元素，同时该元素上一行同列的数据下移
+     */
+    FirstLevel.prototype.removeElementAndMoveDown = function (row, col) {
+        for (var i = row; i < this.elementArray.rows - 1; i++) {
+            var array = MyElement.swapText(this.elementArray.getValue(i + 1, col), this.elementArray.getValue(i, col));
+            this.elementArray.setValue(i + 1, col, array[0]);
+            this.elementArray.setValue(i, col, array[1]);
+        }
+        this.elementArray.setValue(this.elementArray.rows - 1, col, MyElement.createNullElement(this.elementArray.rows - 1, col));
     };
     return FirstLevel;
 }(egret.DisplayObjectContainer));

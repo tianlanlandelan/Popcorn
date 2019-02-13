@@ -74,11 +74,17 @@ class My2dArray{
     }
 
     /**
-     * 移除一个元素，
+     * 移除一个元素，同时该元素上一行同列的数据下移
      */
-    public removeElement(row:number,col:number):void{
+    // public removeElementAndMoveDown(row:number,col:number):void{
+    //     this.setValue(row,col,null);
+    //     for(let i = row; i < this.rows - 1; i ++){
+    //         let a = this.getValue(i + 1 , col);
+    //         this.setValue(i + 1,col,this.getValue(i,col));
+    //         this.setValue(i,col,a);
+    //     }
+    // }
 
-    }
 
     /**
      * 初始化行数
@@ -123,15 +129,5 @@ class My2dArray{
         }
         console.log("====打印结束====");
     }
-
-    public test(){
-        let my2DArray:My2dArray = new My2dArray();
-        my2DArray.init(5,6,0);
-        console.log("数组:",my2DArray.getArray());
-        console.log("取值:",my2DArray.getValue(1,1));
-        my2DArray.setValue(1,1,5);
-        console.log("赋值后取值:",my2DArray.getValue(1,1));
-        console.log("取数组范围外的值:",my2DArray.getValue(10,1));
-    }
-    
+   
 }
